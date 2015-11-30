@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  debater: MyString
+  speaker_award: 1
+  novice_speaker_award: 1
+
+two:
+  debater: MyString
+  speaker_award: 1
+  novice_speaker_award: 1

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_id: 
+  break_round: 1
+  tournament_id: 
+
+two:
+  team_id: 
+  break_round: 1
+  tournament_id: 
