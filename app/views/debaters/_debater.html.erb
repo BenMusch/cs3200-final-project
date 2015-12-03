@@ -1,0 +1,6 @@
+<li>
+  <%= link_to debater.name, debater %>
+  (<%= link_to "edit", edit_debater_path(debater) %>)
+  (<%= link_to "delete", debater,
+  method: :delete, data: { confirm: "Are you sure?" } %>)
+</li>

@@ -1,7 +1,6 @@
 class Debater < ActiveRecord::Base
-  self.primary_key = 'name'
-
-  def to_param
-    self.name.paramaterize
-  end
+  has_many :debater_stats, dependent: :destroy
+  has_many :debated_ats, dependent: :destroy
+  has_many :tournaments, through: :debated_ats
+  has_many :teams, through: :pairings
 end

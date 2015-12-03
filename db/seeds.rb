@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+25.times do
+  Debater.create(name: Faker::Name.name, hybrid: rand(10) == 5)
+end

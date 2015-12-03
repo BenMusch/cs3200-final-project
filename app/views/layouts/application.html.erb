@@ -22,18 +22,17 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li role="separator" class="divider"></li>
-          <li>Debaters</li>
-          <li role="separator" class="divider"></li>
-          <li>Teams</li>
-          <li role="separator" class="divider"></li>
-          <li>Tournaments</li>
+          <li><%= link_to "Debaters", debaters_path %>
+          <li><%= link_to "Teams", teams_path %>
+          <li><%= link_to "Tournaments", tournaments_path %>
         </ul>
       </div>
     </div>
   </nav>
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

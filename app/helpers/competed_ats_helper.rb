@@ -1,0 +1,2 @@
+module CompetedAtsHelper
+end

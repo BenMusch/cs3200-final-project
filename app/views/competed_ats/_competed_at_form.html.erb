@@ -1,0 +1,21 @@
+<%= form_for([@tournament, @entry]) do |f| %>
+  <%= f.hidden_field :tournament_id, value: params[:tournament_id] %>
+
+  <%= f.fields_for :team do |team| %>
+    <%= team.fields_for :pairings do |pairings| %>
+      <%= pairings.label :debater %>
+      <%= pairings.collection_select :debater_id,
+      @debaters, :id, :name %><br>
+    <% end %>
+  <% end %>
+
+  <%= f.label :novice_break_round %>
+  <%= f.collection_select :novice_break_round, @novice_rounds,
+  :value, :title %><br>
+
+  <%= f.label :break_round %>
+  <%= f.collection_select :break_round, @rounds,
+  :value, :title %><br>
+
+  <%= f.submit "Submit" %>
+<% end %>

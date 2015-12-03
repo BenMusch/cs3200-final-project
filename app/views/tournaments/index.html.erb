@@ -1,0 +1,23 @@
+<div class="col-md-12">
+  <center>
+    <h1>Tournaments</h1>
+
+    <%= link_to "Add tournament", new_tournament_path %>
+  </center>
+
+  <%= form_tag tournaments_path, method: :get do %>
+    <%= number_field_tag :year, params[:year],
+                       class:       "form-control shorter-field block",
+                       placeholder: "Filter by year" %>
+    <%= submit_tag "Filter", class: "btn btn-default block" %>
+  <% end %>
+  <br>
+  <hr>
+  <br>
+
+  <% if @tournaments %>
+    <ul>
+      <%= render @tournaments %>
+    </ul>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<%= form_for tournament do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %><br>
+
+  <%= f.label :number_of_novices %>
+  <%= f.number_field :novice_count, class: "form-control" %><br>
+
+  <%= f.label :number_of_teams %>
+  <%= f.number_field :team_count, class: "form-control" %><br>
+
+  <%= f.label :starting_year_of_season %>
+  <%= f.number_field :year, class: "form-control" %><br>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

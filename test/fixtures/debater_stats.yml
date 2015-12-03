@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  debater_id: 
+  year: 1
+  novice: false
+  soty_points: 1
+  noty_points: 1
+
+two:
+  debater_id: 
+  year: 1
+  novice: false
+  soty_points: 1
+  noty_points: 1

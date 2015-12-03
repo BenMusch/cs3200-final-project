@@ -1,0 +1,9 @@
+<%= form_for debater do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %><br>
+
+  <%= f.label :hybrid %>
+  <%= f.check_box :hybrid, {}, true, false %><br>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,13 @@
+<center>
+  <h1><%= @debater.name %></h1>
+  <%= link_to "edit", edit_debater_path(name: @debater.name) %> |
+  <%= link_to "delete", "/debaters/#{@debater.to_param}",
+  method: :delete, data: { confirm: "Are you sure?" } %>
+</center>
+<h3>Competitions:</h3>
+<ul>
+  <% @debater.tournaments.each do |t| %>
+    <li><%= "#{t.name} (with " %>
+      <%= link_to get_partner(t, @debater).name, get_partner(t, @debater) %>)
+  <% end %>
+</ul>

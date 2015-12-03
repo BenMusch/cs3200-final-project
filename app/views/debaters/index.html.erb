@@ -1,0 +1,13 @@
+<center>
+  <h1>Debaters</h1>
+  <br>
+  <span>
+    <%= link_to "Order by Name A-Z", debaters_path(order: "asc") %> |
+    <%= link_to "Order by Name Z-A", debaters_path(order: "desc") %> |
+    <%= link_to "Add New Debater", new_debater_path %>
+  </span>
+</center>
+
+<ul class="debaters-list">
+  <%= render @debaters %>
+</ul>

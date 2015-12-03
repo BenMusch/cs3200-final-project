@@ -1,0 +1,9 @@
+<li>
+  <%= Team.find(entry.team_id).to_s %>
+  <% if entry.break_round %>
+    <%= " - " + to_tournament_round(entry.break_round) %>
+  <% end %>
+  <% if entry.novice_break_round %>
+    <%= " - Novice " + to_tournament_round(entry.novice_break_round) %>
+  <% end %>
+</li>

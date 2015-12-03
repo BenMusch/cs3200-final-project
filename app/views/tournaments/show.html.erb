@@ -1,0 +1,21 @@
+<center>
+  <h1><%= @tournament.name %> - <%= @tournament.year %></h1>
+  <span>
+    <%= link_to "Add team",
+    new_tournament_competed_at_path(tournament_id: @tournament.id) %> |
+    <%= link_to "Add speaker award", "#" %> |
+    <%= link_to "Edit", edit_tournament_path(@tournament) %> |
+    <%= link_to "Delete tournament", @tournament,
+    method: :delete, data: { confirm: "Are you sure?" } %>
+  </span>
+</center>
+
+<p><b>Number of novices:</b> <%= @tournament.novice_count %></p>
+<p><b>Number of teams:</b> <%= @tournament.team_count %></p>
+
+<h3>Entries</h3>
+<ul>
+  <% @tournament.competed_ats.each do |entry| %>
+    <%= render 'entry', entry: entry %>
+  <% end %>
+</ul>
