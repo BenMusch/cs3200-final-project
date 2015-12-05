@@ -3,7 +3,8 @@
   <span>
     <%= link_to "Add team",
     new_tournament_competed_at_path(tournament_id: @tournament.id) %> |
-    <%= link_to "Add speaker award", "#" %> |
+    <%= link_to "Add speaker award",
+    new_tournament_debated_at_path(tournament_id: @tournament.id) %> |
     <%= link_to "Edit", edit_tournament_path(@tournament) %> |
     <%= link_to "Delete tournament", @tournament,
     method: :delete, data: { confirm: "Are you sure?" } %>
@@ -17,5 +18,20 @@
 <ul>
   <% @tournament.competed_ats.each do |entry| %>
     <%= render 'entry', entry: entry %>
+  <% end %>
+</ul>
+
+<h3>Speaker Awards</h3>
+<ul>
+  <% @tournament.debated_ats.where.not(speaker_award: nil).each do |entry| %>
+    <%= render 'speaker_award', entry: entry, novice: false %>
+  <% end %>
+</ul>
+
+<h3>Novice Speaker Awards</h3>
+<ul>
+  <% @tournament.debated_ats
+  .where.not(novice_speaker_award: nil).each do |entry| %>
+    <%= render 'speaker_award', entry: entry, novice: true %>
   <% end %>
 </ul>

@@ -1,0 +1,15 @@
+<%= form_for([@tournament, @entry]) do |f| %>
+  <%= f.hidden_field :tournament_id, value: params[:tournament_id] %>
+
+  <%= f.label :debater %>
+  <%= f.collection_select :debater_id,
+  @debaters, :id, :name %><br>
+
+  <%= f.label :speaker_award %>
+  <%= f.number_field :speaker_award, class: "form-control" %><br>
+
+  <%= f.label :novice_speaker_award %>
+  <%= f.number_field :novice_speaker_award, class: "form-control" %><br>
+
+  <%= f.submit "Submit" %>
+<% end %>

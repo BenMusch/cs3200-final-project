@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203045728) do
+ActiveRecord::Schema.define(version: 20151205000218) do
 
   create_table "competed_ats", force: :cascade do |t|
     t.integer  "team_id",            limit: 4
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 20151203045728) do
   add_index "competed_ats", ["tournament_id"], name: "index_competed_ats_on_tournament_id", using: :btree
 
   create_table "debated_ats", force: :cascade do |t|
-    t.integer  "debater_id",    limit: 4
-    t.integer  "tournament_id", limit: 4
-    t.integer  "speaker_award", limit: 4
-    t.integer  "novice_place",  limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "debater_id",           limit: 4
+    t.integer  "tournament_id",        limit: 4
+    t.integer  "speaker_award",        limit: 4
+    t.integer  "novice_speaker_award", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "debated_ats", ["debater_id"], name: "index_debated_ats_on_debater_id", using: :btree

@@ -1,0 +1,28 @@
+<li><%= link_to entry.debater.name, entry.debater %> -
+  <% if novice %>
+    <% case entry.novice_speaker_award %>
+    <% when 1 %>
+      <%= "1st novice" %>
+    <% when 2 %>
+      <%= "2nd novice" %>
+    <% when 3 %>
+      <%= "3rd novice" %>
+    <% else %>
+      <%= entry.novice_speaker_award.to_s + "th novice" %>
+    <% end %>
+  <% else %>
+    <% case entry.speaker_award %>
+    <% when 1 %>
+      <%= "1st speaker" %>
+    <% when 2 %>
+      <%= "2nd speaker" %>
+    <% when 3 %>
+      <%= "3rd speaker" %>
+    <% else %>
+      <%= entry.speaker_award.to_s + "th speaker" %>
+    <% end %>
+  <% end %>
+  (<%= link_to "edit", edit_tournament_debated_at_path(
+    tournament_id: entry.tournament.id,
+    id: entry.id
+  ) %>)

@@ -1,2 +1,9 @@
 Simple rails app to store info about the debate team. Made for the Database
 Design final project.
+
+To add:
+
+Triggers for stats
+* update debater stats
+* update team stats
+* delete debated_at after the competed_at was removed

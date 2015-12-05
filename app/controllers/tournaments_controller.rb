@@ -21,6 +21,9 @@ class TournamentsController < ApplicationController
   end
 
   def destroy
+    @tournament = Tournament.find(params[:id])
+    @tournament.destroy
+    redirect_to tournaments_path, method: :get
   end
 
   def new

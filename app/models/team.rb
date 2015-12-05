@@ -10,4 +10,7 @@ class Team < ActiveRecord::Base
   def to_s
     self.debaters.map(&:name).join (" & ")
   end
+
+  def to_link
+  end
 end
