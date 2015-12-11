@@ -8,3 +8,23 @@
 25.times do
   Debater.create(name: Faker::Name.name)
 end
+
+10.times do
+  Tournament.create(name: Faker::Address.city, year: [2013, 2014, 2015].sample)
+end
+
+10.times do
+  Team.create()
+end
+
+Team.each do |t|
+  id1 = Debater.order("RANDOM()").first.id
+  id2 = Debater.order("RANDOM()").first.id
+  while id1 == id2
+    id2 = Debater.order("RANDOM()").first.id
+  end
+  Pairing.create(team_id: t.id)
+  Pairing.create(debater_id: id1)
+  Pairing.create(team_id: t.id)
+  Pairing.create(debater_id: id2)
+end

@@ -4,14 +4,17 @@
   <%= link_to "delete", @debater,
 method: :delete, data: { confirm: "Are you sure?" } %>
 </center>
+<div class="col-md-4">
 <h3>Competitions:</h3>
 <ul>
   <% @debater.tournaments.each do |t| %>
-    <li><%= "#{t.name} (with " %>
+    <li><%= link_to t.name, t %> (with
       <%= link_to get_partner(t, @debater).name, get_partner(t, @debater) %>)
   <% end %>
 </ul>
+</div>
 
+<div class="col-md-4">
 <h3>Individual Results:</h3>
 <% @debater.debater_stats.each do |stat| %>
   <span><b><%= stat.year %></b>:
@@ -31,3 +34,13 @@ method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
   </ul>
 <% end %>
+</div>
+
+<div class="col-md-4">
+  <h3>Teams:</h3>
+  <ul>
+  <% @debater.teams.each do |team| %>
+    <li><%= link_to team.to_s, team %></li>
+  <% end %>
+  </ul>
+</div>

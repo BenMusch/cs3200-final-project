@@ -6,4 +6,7 @@
   <% if entry.novice_break_round %>
     <%= " - Novice " + to_tournament_round(entry.novice_break_round) %>
   <% end %>
+  (<%= link_to "delete", tournament_competed_at_path(id: entry.id,
+  tournament_id: entry.tournament_id), method: :delete,
+  data: { confirm: "Are you sure?" } %>)
 </li>

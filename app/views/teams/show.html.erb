@@ -1,0 +1,21 @@
+<center>
+  <h1><%= link_to @team.debaters.first.name, @team.debaters.first %> &
+  <%= link_to @team.debaters.last.name, @team.debaters.last %></h1>
+</center>
+
+<h3>Results:</h3>
+<% @team.team_stats.each do |stat| %>
+  <span><b><%= stat.year %></b>:
+    <% if stat.toty_points && stat.toty_points > 0 %>
+       <%= "TOTY points: #{stat.toty_points}" %>
+    <% end %>
+  </span>
+  <ul>
+    <% get_team_results(stat.year, stat.team_id).each do |t| %>
+      <li><%= t %></li>
+    <% end %>
+    <% get_novice_team_results(stat.year, stat.team_id).each do |t| %>
+      <li><%= t %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -14,7 +14,6 @@ class CompetedAtsController < ApplicationController
     team = find_team_if_exists
     ps = competed_at_params
     if team
-      puts "GETTING RUN"
       params = {
         tournament_id:      ps[:tournament_id],
         break_round:        ps[:break_round],
@@ -33,14 +32,14 @@ class CompetedAtsController < ApplicationController
     else
       @entry = CompetedAt.new(competed_at_params)
     end
-    if @entry.save
+    if team && @entry.save
       DebatedAt.find_or_create_by(tournament_id: ps[:tournament_id],
                      debater_id: ps[:team_attributes][:pairings_attributes]['0'][:debater_id])
       DebatedAt.find_or_create_by(tournament_id: ps[:tournament_id],
                      debater_id: ps[:team_attributes][:pairings_attributes]['1'][:debater_id])
       redirect_to @entry.tournament
     else
-      redirect_to 'new', tournament_id: ps[:tournament_id]
+      redirect_to new_tournament_competed_at_path(tournament_id: ps[:tournament_id])
     end
   end
 
@@ -51,6 +50,10 @@ class CompetedAtsController < ApplicationController
   end
 
   def destroy
+    @comp = CompetedAt.find(params[:id])
+    tid = @comp.tournament_id
+    @comp.destroy
+    redirect_to tournament_path(id: tid)
   end
 
   private
@@ -100,18 +103,14 @@ class CompetedAtsController < ApplicationController
 
   def find_team_if_exists
     pairing_params = competed_at_params[:team_attributes][:pairings_attributes]
-    puts  "PARAMS #{pairing_params}"
     pairings = Pairing.where(debater_id: pairing_params['0'][:debater_id])
     pairings.each do |pairing|
       team = pairing.team
       team.pairings.each do |p2|
-        p p2.debater_id
-        p pairing_params['1'][:debater_id]
-        p p2.debater_id == pairing_params['1'][:debater_id]
-        p p2.debater_id == pairing_params['1'][:debater_id].to_i
         if p2.debater_id == pairing_params['1'][:debater_id].to_i
-          puts "HELLO"
-          return team
+          unless p2.debater_id == pairing.debater_id
+            return team
+          end
         end
       end
     end

@@ -70,4 +70,28 @@ module ApplicationHelper
     end
     results
   end
+
+  def get_team_results(year, team_id)
+    team = Team.find(team_id)
+    results = []
+    team.competed_ats.each do |entry|
+      tournament = Tournament.where(id: entry.tournament_id, year: year).first
+      if entry.break_round
+        results += ["#{tournament.name} - #{to_tournament_round(entry.break_round)}"]
+      end
+    end
+    results
+  end
+
+  def get_novice_team_results(year, team_id)
+    team = Team.find(team_id)
+    results = []
+    team.competed_ats.each do |entry|
+      tournament = Tournament.where(id: entry.tournament_id, year: year).first
+      if entry.novice_break_round
+        results += ["#{tournament.name} - Novice #{to_tournament_round(entry.novice_break_round)}"]
+      end
+    end
+    results
+  end
 end
