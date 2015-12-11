@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207055001) do
+ActiveRecord::Schema.define(version: 20151209181105) do
 
   create_table "competed_ats", force: :cascade do |t|
     t.integer  "team_id",            limit: 4
@@ -52,8 +52,9 @@ ActiveRecord::Schema.define(version: 20151207055001) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "name",       limit: 255, default: "Test Person", null: false
-    t.boolean  "hybrid"
   end
+
+  add_index "debaters", ["name"], name: "NAME", unique: true, using: :btree
 
   create_table "pairings", force: :cascade do |t|
     t.integer  "team_id",    limit: 4
@@ -76,9 +77,8 @@ ActiveRecord::Schema.define(version: 20151207055001) do
   add_index "team_stats", ["team_id"], name: "index_team_stats_on_team_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.integer  "team_id",    limit: 4
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -90,12 +90,14 @@ ActiveRecord::Schema.define(version: 20151207055001) do
     t.integer  "novice_count", limit: 4
   end
 
-  add_foreign_key "competed_ats", "teams", name: "competed_ats_team_id_fk"
-  add_foreign_key "competed_ats", "tournaments", name: "competed_ats_tournament_id_fk"
-  add_foreign_key "debated_ats", "debaters", name: "debated_ats_debater_id_fk"
-  add_foreign_key "debated_ats", "tournaments", name: "debated_ats_tournament_id_fk"
-  add_foreign_key "debater_stats", "debaters", name: "debater_stats_debater_id_fk"
-  add_foreign_key "pairings", "debaters"
-  add_foreign_key "pairings", "teams"
-  add_foreign_key "team_stats", "teams", name: "team_stats_team_id_fk"
+  add_index "tournaments", ["name", "year"], name: "NAME_AND_YEAR", unique: true, using: :btree
+
+  add_foreign_key "competed_ats", "teams", name: "competed_ats_team_id_fk", on_delete: :cascade
+  add_foreign_key "competed_ats", "tournaments", name: "competed_ats_tournament_id_fk", on_delete: :cascade
+  add_foreign_key "debated_ats", "debaters", name: "debated_ats_debater_id_fk", on_delete: :cascade
+  add_foreign_key "debated_ats", "tournaments", name: "debated_ats_tournament_id_fk", on_delete: :cascade
+  add_foreign_key "debater_stats", "debaters", name: "debater_stats_debater_id_fk", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "pairings", "debaters", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "pairings", "teams", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "team_stats", "teams", name: "team_stats_team_id_fk", on_update: :cascade, on_delete: :cascade
 end

@@ -49,6 +49,6 @@ class DebatersController < ApplicationController
   private
 
   def debater_params
-    params.require(:debater).permit(:name, :hybrid)
+    params.require(:debater).permit(:name)
   end
 end

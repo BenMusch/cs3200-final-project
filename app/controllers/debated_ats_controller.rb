@@ -6,7 +6,8 @@ class DebatedAtsController < ApplicationController
   end
 
   def create
-    @entry = DebatedAt.find_by(debated_at_params[:_id])
+    @entry = DebatedAt.find_by(tournament_id: debated_at_params[:tournament_id],
+                               debater_id:    debated_at_params[:debater_id])
     if @entry.update_attributes(debated_at_params)
       redirect_to tournament_path(id: @entry.tournament_id)
     else

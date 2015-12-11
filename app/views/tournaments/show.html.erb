@@ -23,7 +23,8 @@
 
 <h3>Speaker Awards</h3>
 <ul>
-  <% @tournament.debated_ats.where.not(speaker_award: nil).each do |entry| %>
+  <% @tournament.debated_ats
+  .where("speaker_award IS NOT NULL AND speaker_award > 0").each do |entry| %>
     <%= render 'speaker_award', entry: entry, novice: false %>
   <% end %>
 </ul>
@@ -31,7 +32,7 @@
 <h3>Novice Speaker Awards</h3>
 <ul>
   <% @tournament.debated_ats
-  .where.not(novice_speaker_award: nil).each do |entry| %>
+  .where("novice_speaker_award IS NOT NULL AND novice_speaker_award > 0").each do |entry| %>
     <%= render 'speaker_award', entry: entry, novice: true %>
   <% end %>
 </ul>

@@ -1,8 +1,8 @@
 <center>
   <h1><%= @debater.name %></h1>
   <%= link_to "edit", edit_debater_path(name: @debater.name) %> |
-  <%= link_to "delete", "/debaters/#{@debater.to_param}",
-  method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to "delete", @debater,
+method: :delete, data: { confirm: "Are you sure?" } %>
 </center>
 <h3>Competitions:</h3>
 <ul>
@@ -11,3 +11,23 @@
       <%= link_to get_partner(t, @debater).name, get_partner(t, @debater) %>)
   <% end %>
 </ul>
+
+<h3>Individual Results:</h3>
+<% @debater.debater_stats.each do |stat| %>
+  <span><b><%= stat.year %></b>:
+    <% if stat.soty_points && stat.soty_points > 0 %>
+       <%= "SOTY points: #{stat.soty_points}" %>
+    <% end %>
+    <% if stat.noty_points && stat.noty_points > 0 %>
+       <%= "NOTY points: #{stat.noty_points}" %>
+    <% end %>
+  </span>
+  <ul>
+    <% get_individual_results(stat.year, stat.debater_id).each do |t| %>
+      <li><%= t %></li>
+    <% end %>
+    <% get_novice_results(stat.year, stat.debater_id).each do |t| %>
+      <li><%= t %></li>
+    <% end %>
+  </ul>
+<% end %>
